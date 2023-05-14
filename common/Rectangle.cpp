@@ -34,3 +34,15 @@ bool Rectangle::collides(const Rectangle &other) const {
 bool Rectangle::in_shoot_range(const Rectangle &shooter) const {
     return this->y1 > shooter.y2 && this->y2 < shooter.y1;
 }
+
+bool Rectangle::contains(const Point &point) const {
+    return this->x1 <= point.x && this->x2 >= point.x && this->y1 <= point.y && this->y2 >= point.y;
+}
+
+int Rectangle::width() const {
+    return this->x2 - this->x1;
+}
+
+int Rectangle::heigth() const {
+    return this->y2 - this->y1;
+}
