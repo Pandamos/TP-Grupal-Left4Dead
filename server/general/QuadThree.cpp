@@ -17,7 +17,9 @@ QuadThree::~QuadThree() {
 }
 
 void QuadThree::insert(GameInstance* new_instance) {
-    if (this->contents.size() < QUT_INSTANCE_LIMIT) {
+    if (this->contents.size() < QUT_INSTANCE_LIMIT 
+    || this->area.width() == 1 
+    || this->area.heigth() == 1) {
         this->contents.push_back(new_instance);
     } else {
         if (QUT_NOT_HAS_CHILDS)
