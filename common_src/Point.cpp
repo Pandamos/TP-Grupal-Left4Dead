@@ -1,9 +1,9 @@
 #include <cmath>
 #include "Point.h"
 
-Point::Point() : x(0), y(0);
+Point::Point() : x(0), y(0) {}
 
-Point::Point(int x, int y) : x(x), y(y);
+Point::Point(int x, int y) : x(x), y(y) {}
 
 float Point::distance(const Point &other) const {
     int xdist = this->x - other.x;

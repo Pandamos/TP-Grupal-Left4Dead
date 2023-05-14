@@ -3,8 +3,8 @@
 class QuadThree;
 
 #include <list>
-#include "Rectangle.h"
-#include "general/GameInstance.h"
+#include "../../common/Rectangle.h"
+#include "GameInstance.h"
 #define QUT_INSTANCE_LIMIT 3
 #define QUT_ROSE_NW 0
 #define QUT_ROSE_NE 1
