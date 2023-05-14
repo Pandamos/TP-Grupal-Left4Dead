@@ -1,3 +1,6 @@
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
+
 struct Rectangle {
     int x1;
     int x2;
@@ -11,3 +14,4 @@ struct Rectangle {
     bool collides(const Rectangle &other) const;
     bool in_shoot_range(const Rectangle &shooter) const;
 };
+#endif // RECTANGLE_H

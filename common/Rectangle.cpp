@@ -1,6 +1,7 @@
 #include "Rectangle.h"
 
 Rectangle::Rectangle() : x1(0), x2(0), y1(0), y2(0) {};
+
 Rectangle::Rectangle(int x1, int x2, int y1, int y2) {
     if (x1 < x2) {
         this->x1 = x1;
@@ -31,5 +32,5 @@ bool Rectangle::collides(const Rectangle &other) const {
 }
 
 bool Rectangle::in_shoot_range(const Rectangle &shooter) const {
-    return this->y1 > other.y2 && this->y2 < other.y1
+    return this->y1 > shooter.y2 && this->y2 < shooter.y1;
 }
