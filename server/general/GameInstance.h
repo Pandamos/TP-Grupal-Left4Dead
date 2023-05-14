@@ -11,7 +11,6 @@ class GameInstance {
     Rectangle collision_box;
 
     public:
-    //GameInstance();
     void move(const int xdist, const int ydist);
     bool collides(const Rectangle &box) const;
 };

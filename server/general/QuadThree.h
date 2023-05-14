@@ -6,20 +6,14 @@ class QuadThree;
 #include "Rectangle.h"
 #include "general/GameInstance.h"
 
-class QuadThreeNode {
+class QuadThree {
     Rectangle area;
     std::list<GameInstance*> contents;
-    Rectangle* childs[4];
+    QuadThree* childs[4];
 
     public:
-    QuadThreeNode();
-    ~QuadThreeNode();
+    QuadThree();
+    ~QuadThree();
     void add_instance();
 };
-
-class QuadThree {
-    
-};
-
-
 #endif  // QUAD_THREE_H
