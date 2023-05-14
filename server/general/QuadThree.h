@@ -13,15 +13,18 @@ class QuadThree;
 
 class QuadThree {
     Rectangle area;
+    QuadThree* parent;
     QuadThree* childs[4];
     std::list<GameInstance*> contents;
 
     void subdivide();
+    void move_instance_up_three(GameInstance* loaded);
     public:
-    QuadThree(const Rectangle &room_size);
+    explicit QuadThree(const Rectangle &room_size);
     ~QuadThree();
+    void update();
     void insert(GameInstance* new_instance);
     void remove(GameInstance* new_instance);
-    void inside_area(const Rectangle &area, std::list<GameInstance*> &result) const;
+    void get_instances(const Rectangle &area, std::list<GameInstance*> &result) const;
 };
 #endif  // QUAD_THREE_H
