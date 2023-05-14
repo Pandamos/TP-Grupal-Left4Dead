@@ -5,7 +5,7 @@ class Buffer;
 #include <vector>
 #include <string>
 #include <cstdint>
-#include "socket.h"
+#include "common_socket_dipa.h"
 
 class Buffer {
     private:
