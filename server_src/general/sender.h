@@ -21,5 +21,4 @@ class sender /*: public Thread*/ {
     */
     //virtual void run() override;
 };
-
 #endif //SENDER_H_

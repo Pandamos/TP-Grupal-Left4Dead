@@ -12,5 +12,4 @@ class Server {
 
     void run();
 };
-
 #endif

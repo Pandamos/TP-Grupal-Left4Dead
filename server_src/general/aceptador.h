@@ -26,5 +26,4 @@ class aceptador /*: public Thread */{
     //elimina un cliente especifico
     void delete_client(/*client *client*/);
 };
-
 #endif

@@ -17,5 +17,4 @@ class receiver /*: public Thread*/ {
     */
     //virtual void run() override;
 };
-
 #endif //RECEIVER_H_
