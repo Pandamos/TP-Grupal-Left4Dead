@@ -2,8 +2,8 @@
 #define GAME_INSTANCE_H
 class GameInstance;
 
-#include "../../common/Point.h"
-#include "../../common/Rectangle.h"
+#include "../../common_src/Point.h"
+#include "../../common_src/Rectangle.h"
 
 class GameInstance {
     public:

@@ -1,11 +1,11 @@
 #include <exception>
 #include <arpa/inet.h>
-#include "server.h"
-
 #include <iostream>
 #include <iomanip>
 #include <cstring>
 #include <sys/socket.h>
+
+#include "general/server.h"
 
 #define SUCCESS 0
 #define ERROR -1

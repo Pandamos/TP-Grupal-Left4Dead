@@ -1,7 +1,7 @@
 #ifndef ACEPTADOR_H
 #define ACEPTADOR_H
 
-#include "common_socket_dipa.h"
+#include "../../common_src/socket/common_socket_dipa.h"
 
 class aceptador /*: public Thread */{
     private:

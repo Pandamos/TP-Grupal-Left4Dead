@@ -99,10 +99,10 @@ COMPILERFLAGS = $(CXXFLAGS)
 endif
 
 # Si no especifica archivos, tomo todos.
-fuentes_client ?= $(wildcard ./client/*.$(extension)) $(wildcard ./*.$(extension))
-fuentes_server ?= $(wildcard ./server/*.$(extension)) $(wildcard ./*.$(extension))
-fuentes_common ?= $(wildcard ./common/*.$(extension)) $(wildcard ./*.$(extension))
-fuentes_tests ?= $(wildcard ./test/*.$(extension)) $(wildcard ./*.$(extension))
+fuentes_client ?= $(wildcard ./client_src/*.$(extension)) 
+fuentes_server ?= $(wildcard ./server_src/*.$(extension)) 
+fuentes_common ?= $(wildcard ./common_src/*.$(extension)) 
+fuentes_tests ?= $(wildcard ./test_src/*.$(extension))
 directorios = $(shell find . -type d -regex '.*\w+')
 
 occ := $(CC)

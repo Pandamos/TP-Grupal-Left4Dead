@@ -1,12 +1,7 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include <string>
-#include <iostream>
-#include <arpa/inet.h>
-#include <utility>
-
-#include "common_socket_dipa.h"
+#include "../../common_src/socket/common_socket_dipa.h"
 
 class Server {
     private: 
