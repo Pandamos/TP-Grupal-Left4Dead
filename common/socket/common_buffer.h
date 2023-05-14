@@ -36,7 +36,7 @@ class Buffer {
     // Estas funciones estan para mantener privados los atributos del buffer
     // Y para centralizar y no repetir el codigo
     // encargado de envio de informacion por el socket
-    virtual bool send_by(const Socket *skt) const;
+    virtual bool send_by(Socket *skt) const;
     virtual bool read_from(Socket *skt, unsigned int msgSize);
 };
 #endif  // COMMON_SRC_COMMON_BUFFER_H_

@@ -94,7 +94,7 @@ uint32_t Buffer::get_uint() {
 // Estas funciones estan para mantener privados los atributos del buffer
 // Y para centralizar y no repetir el codigo
 // encargado de envio de informacion por el socket
-bool Buffer::send_by(const Socket *skt) const {
+bool Buffer::send_by(Socket *skt) const {
     bool was_closed = false;
     skt->sendall(&this->data[0], this->index, &was_closed);
     return !was_closed;
