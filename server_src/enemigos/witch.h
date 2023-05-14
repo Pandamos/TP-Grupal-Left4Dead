@@ -3,7 +3,7 @@
 
 #include "enemigo.h"
 
-class witch : public enemigo {
+class witch : public Enemigo {
     private:
     void gritar();
 

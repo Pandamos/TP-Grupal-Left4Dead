@@ -3,7 +3,7 @@
 
 #include "enemigo.h"
 
-class venom : public enemigo {
+class venom : public Enemigo {
     public:
     /*
         Recibe la nueva x e y

@@ -1,13 +1,12 @@
 #include "GameInstance.h"
 
 GameInstance::GameInstance(int width, int height)
-: collision_box(0, width, 0, height)
-, position(width / 2, height / 2) 
+: position(width / 2, height / 2) 
+, collision_box(0, width, 0, height)
 {}
 
 GameInstance::GameInstance(int width, int height, int x, int y)
-: collision_box(0, width, 0, height)
-, position(x, y) {
+: position(x, y) , collision_box(0, width, 0, height) {
     this->collision_box.move(x-width/2, y-height/2);
 }
 

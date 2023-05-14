@@ -3,7 +3,7 @@
 
 #include "enemigo.h"
 
-class jumper : public enemigo {
+class jumper : public Enemigo {
     public:
     /*
         Recibe la nueva x e y

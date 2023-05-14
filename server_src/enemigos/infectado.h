@@ -3,7 +3,7 @@
 
 #include "enemigo.h"
 
-class infectado : public enemigo {
+class infectado : public Enemigo {
     private:
     bool puede_correr;
 

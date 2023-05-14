@@ -1,2 +1,5 @@
 *.o
 /test_src
+server
+client
+test
