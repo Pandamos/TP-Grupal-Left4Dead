@@ -1,3 +1,4 @@
+#if defined MAIN_BUILD
 #include <SDL2/SDL.h>
 
 int main(int argc, char *argv[])
@@ -25,3 +26,4 @@ int main(int argc, char *argv[])
 
   return 0;
 }
+#endif

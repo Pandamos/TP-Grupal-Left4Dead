@@ -24,6 +24,8 @@ threads = si
 # Descomentar si se quiere ver como se invoca al compilador
 verbose = si
 
+# Descomentar si se quiere compilar test
+testbuild = si
 
 # CONFIGURACION "AVANZADA"
 ###########################
@@ -49,6 +51,7 @@ CXXSTD = c++17
 # Estandar POSIX que extiende C/C++. En teoria los grandes
 # sistemas operativos incluyendo Windows son POSIX compliant
 CFLAGS += -D _POSIX_C_SOURCE=200809L
+CFLAGSTEST += -D _POSIX_C_SOURCE=200809L
 
 # Si se quiere compilar estaticamente, descomentar la siguiente linea
 #static = si
@@ -98,11 +101,17 @@ COMPILER = $(CXX)
 COMPILERFLAGS = $(CXXFLAGS)
 endif
 
+ifdef testbuild
+CFLAGS += -DTEST_BUILD
+else
+CFLAGS += -DMAIN_BUILD
+endif
+
 # Si no especifica archivos, tomo todos.
-fuentes_client ?= $(wildcard ./client_src/*.$(extension)) $(wildcard ./*.$(extension)) $(wildcard ./client_src/*/*.$(extension))
-fuentes_server ?= $(wildcard ./server_src/*.$(extension)) $(wildcard ./*.$(extension)) $(wildcard ./server_src/*/*.$(extension))
-fuentes_common ?= $(wildcard ./common_src/*.$(extension)) $(wildcard ./*.$(extension)) $(wildcard ./common_src/*/*.$(extension))
-fuentes_tests ?= $(wildcard ./test_src/*.$(extension)) $(wildcard ./*.$(extension))
+fuentes_common ?= $(wildcard ./common_src/*.$(extension)) $(wildcard ./common_*.$(extension)) $(wildcard ./common_src/*/*.$(extension))
+fuentes_client ?= $(wildcard ./client_src/*.$(extension)) $(wildcard ./client_*.$(extension)) $(wildcard ./client_src/*/*.$(extension))
+fuentes_server ?= $(wildcard ./server_src/*.$(extension)) $(wildcard ./server_*.$(extension)) $(wildcard ./server_src/*/*.$(extension))
+fuentes_tests ?=  $(wildcard ./test_src/*.$(extension)) $(wildcard ./test_*.$(extension))
 directorios = $(shell find . -type d -regex '.*\w+')
 
 occ := $(CC)
@@ -121,26 +130,25 @@ endif
 LDFLAGS-TSAN = $(LDFLAGS) -fsanitize=thread
 COMPILERFLAGS-TSAN = $(COMPILERFLAGS) -fsanitize=thread
 
-
-# REGLAS
-#########
-
-all: client server
-
 o_common_files = $(patsubst %.$(extension),%.o,$(fuentes_common))
 o_client_files = $(patsubst %.$(extension),%.o,$(fuentes_client))
 o_server_files = $(patsubst %.$(extension),%.o,$(fuentes_server))
 o_tests_files = $(patsubst %.$(extension),%.o,$(fuentes_tests))
 o-tsan_files = $(patsubst %.$(extension),%.o-tsan,$(fuentes_server) $(fuentes_common))
 
+# REGLAS
+#########
+
+all: client server
+
 test: $(o_common_files) $(o_server_files) $(o_tests_files)
 	@if [ -z "$(o_tests_files)" ]; \
 	then \
-		echo "No hay archivos de entrada en el directorio actual para el cliente. Recuerde que los archivos deben respetar la forma 'client*.$(extension)' y que no se aceptan directorios anidados."; \
+		echo "No hay archivos de entrada en el directorio actual para las pruebas. Recuerde que los archivos deben respetar la forma 'test*.$(extension)' y que no se aceptan directorios anidados."; \
 		if [ -n "$(directorios)" ]; then echo "Directorios encontrados: $(directorios)"; fi; \
 		false; \
 	fi >&2
-	$(LD) $(o_common_files) $(o_server_files) $(o_tests_files) -o $@ $(LDFLAGS)
+	$(LD) $(o_common_files) $(o_server_files) $(o_tests_files) -o $@ $(LDFLAGS) 
 
 client: $(o_common_files) $(o_client_files)
 	@if [ -z "$(o_client_files)" ]; \
@@ -173,7 +181,7 @@ server-tsan: $(o-tsan_files)
 	$(LD) $(o-tsan_files) -o $@ $(LDFLAGS-TSAN)
 
 clean: clean-obj
-	$(RM) -f $(o_common_files) $(o_client_files) $(o_server_files) $(target-tsan) client server server-tsan
+	$(RM) -f $(o_common_files) $(o_client_files) $(o_server_files) $(o_tests_files) $(target-tsan) client server server-tsan
 
 clean-obj:
 	$(RM) -f $(o_files) $(o-tsan_files)
