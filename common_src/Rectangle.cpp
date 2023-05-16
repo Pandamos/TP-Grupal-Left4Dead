@@ -28,7 +28,7 @@ void Rectangle::move(const int xdist, const int ydist) {
 }
 
 bool Rectangle::collides(const Rectangle &other) const {
-    return this->x1 < other.x2 && this->x2 > other.x1 && this->y1 > other.y2 && this->y2 < other.y1;
+    return this->x1 < other.x2 && this->x2 > other.x1 && this->y1 < other.y2 && this->y2 > other.y1;
 }
 
 bool Rectangle::in_shoot_range(const Rectangle &shooter) const {
