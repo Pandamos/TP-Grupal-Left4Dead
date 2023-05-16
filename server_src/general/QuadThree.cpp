@@ -1,6 +1,6 @@
 #include "QuadThree.h"
 
-#define QUT_NOT_HAS_CHILDS !this->childs[0]
+#define QUT_IS_LEAF !this->childs[0]
 #define QUT_HAS_CHILDS this->childs[0]
 
 QuadThree::QuadThree(const Rectangle& room_size) : area(room_size) {
@@ -9,7 +9,7 @@ QuadThree::QuadThree(const Rectangle& room_size) : area(room_size) {
 }
 
 QuadThree::~QuadThree() {
-    if (QUT_NOT_HAS_CHILDS)
+    if (QUT_IS_LEAF)
         return;
 
     for (auto child : this->childs)
@@ -21,13 +21,16 @@ void QuadThree::insert(GameInstance* new_instance) {
     || this->area.width() == 1 
     || this->area.heigth() == 1) {
         this->contents.push_back(new_instance);
-    } else {
-        if (QUT_NOT_HAS_CHILDS)
-            this->subdivide();
+        return;
+    } 
+    
+    if (QUT_IS_LEAF)
+        this->subdivide();
 
-        for (auto child : this->childs) {
-            if (child->area.contains(new_instance->position))
-                child->insert(new_instance);
+    for (auto child : this->childs) {
+        if (child->area.contains(new_instance->position)) {
+            child->insert(new_instance);
+            return;
         }
     }
 }
@@ -35,7 +38,7 @@ void QuadThree::insert(GameInstance* new_instance) {
 void QuadThree::remove(GameInstance* new_instance) {
     this->contents.remove(new_instance);
 
-    if (QUT_NOT_HAS_CHILDS)
+    if (QUT_IS_LEAF)
         return;
 
     for (auto child : this->childs) {
@@ -48,6 +51,10 @@ void QuadThree::get_instances(const Rectangle &area, std::list<GameInstance*> &r
     for (auto inst : this->contents) {
         result.push_back(inst);
     }
+
+    if (QUT_IS_LEAF)
+        return;
+        
     for (auto child : this->childs) {
         if (child->area.collides(area))
             child->get_instances(area,result);
